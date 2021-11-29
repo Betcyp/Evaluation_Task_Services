@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0" metadata-complete="true" >
+  <display-name>Example</display-name>
+  <context-param>
+        <param-name>log4jFilelocation</param-name>
+        <param-value>/WEB-INF/log4j.properties</param-value>
+  </context-param>
+   
+  <listener>
+  	<listener-class>com.listeners1.ApplicationContextListener</listener-class>
+  </listener>
+  
+  <servlet>
+    <servlet-name>RegisterServices</servlet-name>
+    <servlet-class>com.service1.RegisterModuleService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterServices</servlet-name>
+    <url-pattern>/Register</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>LoginServices</servlet-name>
+    <servlet-class>com.service1.LoginModuleService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServices</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>BaseServices</servlet-name>
+    <servlet-class>com.service1.BaseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BaseServices</servlet-name>
+    <url-pattern>/Base</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>BalanceServices</servlet-name>
+    <servlet-class>com.service1.BalanceService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BalanceServices</servlet-name>
+    <url-pattern>/Balance</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>addMoney</servlet-name>
+    <servlet-class>com.service1.AddMoneyService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>addMoney</servlet-name>
+    <url-pattern>/add</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>sendMoney</servlet-name>
+    <servlet-class>com.service1.SendMoneyService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sendMoney</servlet-name>
+    <url-pattern>/send</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>viewTransaction</servlet-name>
+    <servlet-class>com.service1.ViewTransactionHistory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>viewTransaction</servlet-name>
+    <url-pattern>/transactions</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>LogoutServices</servlet-name>
+    <servlet-class>com.service1.LogoutModuleService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServices</servlet-name>
+    <url-pattern>/Logout</url-pattern>
+  </servlet-mapping>
+</web-app>

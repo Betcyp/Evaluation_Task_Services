@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+<Resource name="jdbc/MobilePaymentDB"
+auth="Container"
+type="javax.sql.DataSource"
+username="root"
+password="Betcypbabu1998*"
+driverClassName="com.mysql.cj.jdbc.Driver"
+url="jdbc:mysql://localhost:3306/mobilepayment"
+maxTotal="8"
+maxIdle="3"
+maxWaitMillis="10"/>
+</Context>
