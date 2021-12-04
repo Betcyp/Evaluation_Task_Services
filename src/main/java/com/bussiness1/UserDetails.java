@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
@@ -139,29 +140,7 @@ public class UserDetails {
     	 }
 	
 	
-	public static boolean checkEmail(String myEmail) throws SQLException {
-		 Connection connection = null;
-	   	 PreparedStatement ps = null; 
-	   	 ResultSet rs = null;
-	   	 boolean emailExists= false;
-	   	 try {
-	   	 	connection=DbConnect.getInstance().getConnection();
-	   	 	ps=connection.prepareStatement(PaymentQueries.ACCOUNTEMAIL_QUERY);
-	   	 	ps.setString(1,myEmail);
-	   	 	rs=ps.executeQuery();
-	   	 	if(rs.next()) 
-	   	      {
-	   	 		emailExists=true;
-	   	      }
-		}
-	   	finally {
-    	 	ps.close();
-    	 	rs.close();
-    	 	connection.close();
-    	 }
-		return emailExists;
-	}
-
+	
 
 	public static JSONObject getBalance(String myEmail) throws SQLException {
 		 Connection connection = null;
@@ -170,7 +149,7 @@ public class UserDetails {
 	   
 	   	 try {
 	   	 	connection=DbConnect.getInstance().getConnection();
-	   	 	ps=connection.prepareStatement(PaymentQueries.ACCOUNTEMAIL_QUERY);
+	   	 	ps=connection.prepareStatement(PaymentQueries.ACCOUNT_BALANCE_QUERY);
 	   	 	ps.setString(1, myEmail);
 	   	 	rs=ps.executeQuery();
 	   	 	JSONObject jsonObject=new JSONObject();
@@ -221,28 +200,31 @@ public class UserDetails {
 
 	public static JSONObject getTransactionDetails(String myEmail,String email) throws SQLException {
 		Connection connection = null;
-	   	 PreparedStatement ps = null; 
-	   	 ResultSet rs = null;
+	   	PreparedStatement stmnt = null; 
+	   	ResultSet rs = null;
 	   
 	   	 try {
 	   	 	connection=DbConnect.getInstance().getConnection();
-	   	 	ps=connection.prepareStatement(PaymentQueries.TRANSACTIONEMAIL_QUERY);
-	   	 	ps.setString(1, myEmail);
-	   	 	ps.setString(2, email);
-	   	 	rs=ps.executeQuery();
+	   	 	stmnt=connection.prepareStatement(PaymentQueries.TRANSACTIONEMAIL_QUERY);
+	   	 	stmnt.setString(1, myEmail);
+	   	 	stmnt.setString(2, email);
+	   	 	rs=stmnt.executeQuery();
 	   	 	JSONObject jsonObject=new JSONObject();
 	   	 	JSONArray array=new JSONArray();
 	   	 	while(rs.next()) 
 	   	      {
 	   	 		JSONObject record=new JSONObject(); 
-	   	 		record.put(CommonConstants.SENDER,rs.getString(CommonConstants.SENDER));
-	   	 		record.put(CommonConstants.RECEIVER,rs.getString(CommonConstants.RECEIVER));
-	   	 		record.put(CommonConstants.TRANSACTION_TYPE,rs.getString(CommonConstants.TRANSACTION_TYPE_TABLE));
-	   	 		record.put(CommonConstants.AMOUNT,rs.getDouble(CommonConstants.AMOUNT));
-	   	 		record.put(CommonConstants.TIME,rs.getString(CommonConstants.UPDATED_AT));
-	   	 		array.put(record);
-	   	 	
-	   	      }
+	   	 		if(rs.getString(CommonConstants.RECEIVER).equals(myEmail)){
+	   	 		 record.put(CommonConstants.SENDER,rs.getString(CommonConstants.SENDER));
+	   	 		}
+	   	 		else {
+	   	 		 record.put(CommonConstants.RECEIVER,rs.getString(CommonConstants.RECEIVER));
+	   	 		}
+	   	 		 record.put(CommonConstants.TRANSACTION_TYPE,rs.getString(CommonConstants.TRANSACTION_TYPE_TABLE));
+	   	 		 record.put(CommonConstants.AMOUNT,rs.getDouble(CommonConstants.AMOUNT));
+	   	 		 record.put(CommonConstants.TIME,rs.getString(CommonConstants.UPDATED_AT));
+	   	 		 array.put(record);
+	   	 	 }
 	   	 	if(array.isEmpty()) {
 	   	 		return null;
 	   	 	}
@@ -253,7 +235,7 @@ public class UserDetails {
 	   	      
 		}
 	   	finally {
-  	 	ps.close();
+  	 	stmnt.close();
   	 	rs.close();
   	 	connection.close();
 	   	}
@@ -299,6 +281,22 @@ public class UserDetails {
 			connection.close();
 		}
 }
-
-
+	public static void updatePassword(String newPass1, String myEmail) throws SQLException {
+		Connection connection = null;
+        PreparedStatement ps = null;
+        
+        try {
+        	connection=DbConnect.getInstance().getConnection();
+        	ps=connection.prepareStatement(PaymentQueries.PASSWORD_UPDATE_QUERY);
+        	ps.setString(1, newPass1);
+        	ps.setString(2,myEmail);
+        	ps.executeUpdate();
+        	
+        }
+        finally {
+        	ps.close();
+			connection.close();
+        }
+		
+	}
 }

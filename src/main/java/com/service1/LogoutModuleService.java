@@ -24,13 +24,11 @@ public class LogoutModuleService extends BaseServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sessions=sessionValidation(request, response);
 		String myEmail=(String) sessions.getAttribute(CommonConstants.EMAIL);
-		PrintWriter resp =sendResponse(request, response);
 		
 		if(sessions != null){
 			sessions.invalidate();
-    		resp.print("{\"status\":\"You are Successfully Logged out!!\"}");
+			jsonResponse.put(CommonConstants.STATUS,CommonConstants.LOGOUT_MSG);
+			sendResponse(response,jsonResponse);
     	}
-    	
-	}
-
+    }
 }

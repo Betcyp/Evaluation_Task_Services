@@ -43,4 +43,44 @@ public class CommonConstants {
 	public static final String TRANSACTION_DETAILS = "transactionDetails";
 	
 	public static final String UPDATED_AT = "updated_at";
+	
+	public static final String NO_TRANS_MSG = "No transactions made ";
+	
+	public static final String PRBLMS_MSG = "Something went wrong";
+
+	public static final String ALREADY_REG = "Phonenumber or email already registered try with different one";
+
+	public static final String NEW_PASSWORD = "newPassword";
+
+	public static final String CONFIRM_NEW_PASSWORD = "confirmNewPassword";
+
+	public static final String OLD_PASSWORD = "oldPassword";
+
+	public static final String PASSWORD_CHANGE = "Your Password change successfully";
+
+	public static final String PASSWORD_CHANGE_INCORRECT = "Your New password and confirm password does not match";
+
+	public static final String PASSWORD_LENGTH = "Password must contain minimum of 8 characters and one special characters";
+
+	public static final String USER_SUCCESS = "User successfully registered";
+
+	public static final String REG_FAILED = "Something went wrong...Registration failed!!";
+
+	public static final String INVALID_MSG = "Invalid Credentials";
+
+	public static final String LOGIN_FAILED = "Something went wrong...Login failed";
+
+	public static final String LOGIN_MSG = "You are Successfully Logged In!!";
+
+	public static final String LOGIN_FAILED_MSG = "Login failed!!..Please login";
+
+	public static final String DEPOSITED_MSG = "Successfully Deposited!!";
+
+	public static final String SENDED_MSG = "Successfully Sended!!";
+
+	public static final String TRANS_CANCELLED_MSG = "Transaction cancelled due to insufficient balance";
+
+	public static final String NOT_REG_USER_MSG = "Not a Registered User!!..";
+
+	public static final String LOGOUT_MSG = "You are Successfully Logged out!!";
 }

@@ -17,7 +17,7 @@ import com.constants1.CommonConstants;
 
 
 @WebServlet("/ViewTransactionHistory")
-public class ViewTransactionHistory extends BaseServlet {
+public  class ViewTransactionHistory extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	
 
@@ -25,21 +25,22 @@ public class ViewTransactionHistory extends BaseServlet {
 		HttpSession session=sessionValidation(request, response);
 		String myEmail=(String) session.getAttribute(CommonConstants.EMAIL);
 		String email=(String) session.getAttribute(CommonConstants.EMAIL);
-		PrintWriter resp =sendResponse(request, response);
 		
 		
 		try {
-			if(UserDetails.getTransactionDetails(myEmail,email)==null) {
-				resp.print("{\"status\":\"No transactions made\"}");
+			JSONObject objTrans=UserDetails.getTransactionDetails(myEmail,email);
+			if(objTrans==null) {
+				jsonResponse.put(CommonConstants.STATUS,CommonConstants.NO_TRANS_MSG);
+				sendResponse(response,jsonResponse);
 			}
 			else {
-				resp.print(UserDetails.getTransactionDetails(myEmail,email));
+				jsonResponse.put(CommonConstants.STATUS,objTrans);
+				sendResponse(response,jsonResponse);
 			}
 		}
 		catch (Exception e) {
-			resp.print("{\"status\":\"Something went wrong\"}");
-		}
+			jsonResponse.put(CommonConstants.STATUS,CommonConstants.PRBLMS_MSG);
+			sendResponse(response,jsonResponse);
 	} 
 }
-
-
+}

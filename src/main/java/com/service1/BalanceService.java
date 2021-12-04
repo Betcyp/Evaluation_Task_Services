@@ -26,13 +26,15 @@ public class BalanceService extends BaseServlet {
 		
 		HttpSession session=sessionValidation(request, response);
 		String myEmail=(String) session.getAttribute(CommonConstants.EMAIL);
-		PrintWriter resp =sendResponse(request, response);
 				
 		try {
-			resp.print(UserDetails.getBalance(myEmail));
-			
-			} catch (Exception e) {
-				resp.print("{\"status\":\"Something went wrong..\"}");
+			JSONObject objBalance=UserDetails.getBalance(myEmail);
+			//jsonResponse.put(CommonConstants.STATUS, objBalance);
+			sendResponse(response,objBalance);
+		} 
+		catch (Exception e) {
+			jsonResponse.put(CommonConstants.STATUS,CommonConstants.PRBLMS_MSG);
+			sendResponse(response,jsonResponse);
 			}
 		}
 }

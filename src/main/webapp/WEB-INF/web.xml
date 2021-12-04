@@ -81,4 +81,22 @@
     <servlet-name>LogoutServices</servlet-name>
     <url-pattern>/Logout</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>PasswordServices</servlet-name>
+    <servlet-class>com.service1.PasswordChangeService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PasswordServices</servlet-name>
+    <url-pattern>/PasswordChange</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>RegService</servlet-name>
+    <servlet-class>com.service1.Register</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegService</servlet-name>
+    <url-pattern>/RegistersTry</url-pattern>
+  </servlet-mapping>
 </web-app>

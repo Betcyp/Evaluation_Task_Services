@@ -17,7 +17,7 @@ import com.constants1.CommonConstants;
 
 
 @WebServlet("/AddMoneyService")
-public class AddMoneyService extends BaseServlet {
+public  class AddMoneyService extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -28,22 +28,20 @@ public class AddMoneyService extends BaseServlet {
     		JSONObject jsonObject=new JSONObject(result);
 			String myEmail=(String) session.getAttribute(CommonConstants.EMAIL);
 			Double money=Double.valueOf ( (String) jsonObject.get(CommonConstants.ADD_MONEY));
-			PrintWriter resp =sendResponse(request, response);
 					
-		
 			try {
 				String from1=myEmail;
 				String to1=myEmail;
 				String transactionType=CommonConstants.TRANSACTION_DEPO;
 				UserDetails.updateBalanceAndTransactions(myEmail, from1, to1, transactionType, money);
-				resp.print("{\"status\":\"Successfully Deposited!!\"}");
-				
+				jsonResponse.put(CommonConstants.STATUS, CommonConstants.DEPOSITED_MSG);
+				sendResponse(response,jsonResponse);
 			} 
 			catch (Exception e) {
-				resp.print("{\"status\":\"Something went wrong!!..\"}");
-				
+				jsonResponse.put(CommonConstants.STATUS, CommonConstants.PRBLMS_MSG);
+				sendResponse(response,jsonResponse);
 			}
-				}
+		}
 }
 
 
