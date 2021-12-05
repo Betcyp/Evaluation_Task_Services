@@ -26,9 +26,10 @@ public class RegisterModuleService extends BaseServlet {
 		String email=(String) jsonObject.get(CommonConstants.EMAIL);
 		
 		//Response resp=new Response();
-		boolean check = false;
 		try {
+			boolean check = false;
 			check=UserDetails.phoneEmailExists(phoneNumber,email);
+			
 			if(check != false)
 			{
 				jsonResponse.put(CommonConstants.STATUS, CommonConstants.ALREADY_REG);
@@ -36,22 +37,7 @@ public class RegisterModuleService extends BaseServlet {
 				sendResponse(response,jsonResponse);
 			}
 			else {
-				String firstName=(String) jsonObject.get(CommonConstants.FIRSTNAME);
-				String lastName=(String) jsonObject.get(CommonConstants.LASTNAME);
-				String pass=(String) jsonObject.get(CommonConstants.PASSWORD);
-				if(pass.length()<8) {
-					jsonResponse.put(CommonConstants.STATUS,CommonConstants.PASSWORD_LENGTH);
-					sendResponse(response,jsonResponse);
-					String password1=(String) jsonObject.get(CommonConstants.PASSWORD);
-				}
-				else {
-					String password1=pass;
-					double accountBalance=0;
-					UserDetails.registerDatabase(firstName,lastName,phoneNumber,email,password1, accountBalance);
-					jsonResponse.put(CommonConstants.STATUS,CommonConstants.USER_SUCCESS);
-					sendResponse(response,jsonResponse);
-				}
-				
+				regChecking(request, response, phoneNumber,email, jsonObject);
 			}
 		}
 		catch (Exception e) {

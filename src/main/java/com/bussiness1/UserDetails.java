@@ -138,9 +138,6 @@ public class UserDetails {
     	 return exists;  
 
     	 }
-	
-	
-	
 
 	public static JSONObject getBalance(String myEmail) throws SQLException {
 		 Connection connection = null;
@@ -281,7 +278,7 @@ public class UserDetails {
 			connection.close();
 		}
 }
-	public static void updatePassword(String newPass1, String myEmail) throws SQLException {
+	public static void updatePasswordInReg(String newPass1, String myEmail) throws SQLException {
 		Connection connection = null;
         PreparedStatement ps = null;
         

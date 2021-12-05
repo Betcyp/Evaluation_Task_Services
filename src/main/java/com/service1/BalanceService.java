@@ -29,8 +29,8 @@ public class BalanceService extends BaseServlet {
 				
 		try {
 			JSONObject objBalance=UserDetails.getBalance(myEmail);
-			//jsonResponse.put(CommonConstants.STATUS, objBalance);
-			sendResponse(response,objBalance);
+			jsonResponse.put(CommonConstants.STATUS, objBalance);
+			sendResponse(response,jsonResponse);
 		} 
 		catch (Exception e) {
 			jsonResponse.put(CommonConstants.STATUS,CommonConstants.PRBLMS_MSG);

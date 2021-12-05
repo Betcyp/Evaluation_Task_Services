@@ -29,7 +29,20 @@ public class SendMoneyService extends BaseServlet {
 		String email=(String) jsonObject.get(CommonConstants.EMAIL);
 		Double money=Double.valueOf ( (String) jsonObject.get(CommonConstants.SEND_MONEY));
 		
-		sendMoneyChecking(request, response, money, myEmail, email);
-		
+		try {
+			boolean receiverEmailCheck = false;
+			receiverEmailCheck=UserDetails.emailExists(email);
+			if(receiverEmailCheck != false) {
+				sendMoneyChecking(request, response, money, myEmail, email);
+			}
+			else {
+				jsonResponse.put(CommonConstants.STATUS,CommonConstants.NOT_REG_USER_MSG);
+				sendResponse(response,jsonResponse);
+				}
+		}
+		catch(Exception e) {
+			jsonResponse.put(CommonConstants.STATUS,CommonConstants.PRBLMS_MSG);
+			sendResponse(response,jsonResponse);
+		}
 	}
 }

@@ -86,13 +86,14 @@ public  class BaseServlet extends HttpServlet {
 	*/
 	protected HttpSession sessionValidation(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		HttpSession session=request.getSession();
+		
 		//allow access only if session exists
 		if(session.getAttribute("email") == null){
 			jsonResponse.put(CommonConstants.STATUS,CommonConstants.LOGIN_FAILED_MSG);
 			sendResponse(response,jsonResponse);
 		}
 		else {
-		 String email1 = (String) session.getAttribute("email");
+			String email = (String) session.getAttribute("email");
 		}
 		
 		String email1 = null;
@@ -101,8 +102,12 @@ public  class BaseServlet extends HttpServlet {
 		Cookie[] cks = request.getCookies();
 		if(cks !=null){
 			for(Cookie cookie : cks){
-				if(cookie.getName().equals("email")) email1= cookie.getValue();
-				if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
+				if(cookie.getName().equals("email")) {
+					email1= cookie.getValue();
+				}
+				if(cookie.getName().equals("JSESSIONID")) {
+					sessionID = cookie.getValue();
+				}
 			}
 		}
 		return session;
@@ -130,28 +135,19 @@ public  class BaseServlet extends HttpServlet {
 	protected void sendMoneyChecking(HttpServletRequest request, HttpServletResponse response, double money, String myEmail, String email) throws ServletException, IOException {
 		
 		try {
-			boolean receiverEmailCheck = false;
-			receiverEmailCheck=UserDetails.emailExists(email);
-			if(receiverEmailCheck != false) {
-					int e = 0;
-					String from1=myEmail;
-				    String to1=email;
-				    String transactionType=CommonConstants.TRANSACTION_SEND;
-				    String transactionType1=CommonConstants.TRANSACTION_RECEIVED;
-					e=UserDetails.sendMoneyUpdateTransactions(myEmail,from1,to1,transactionType,transactionType1,money);
-					if(e==0) {
-						jsonResponse.put(CommonConstants.STATUS,CommonConstants.SENDED_MSG);
-						sendResponse(response,jsonResponse);
-					}
-					else {
-						jsonResponse.put(CommonConstants.STATUS,CommonConstants.TRANS_CANCELLED_MSG);
-						sendResponse(response,jsonResponse);
-					}
-			}	
-					
-			else {
-				jsonResponse.put(CommonConstants.STATUS,CommonConstants.NOT_REG_USER_MSG);
-				sendResponse(response,jsonResponse);
+				int e = 0;
+				String from1=myEmail;
+				String to1=email;
+				String transactionType=CommonConstants.TRANSACTION_SEND;
+			    String transactionType1=CommonConstants.TRANSACTION_RECEIVED;
+				e=UserDetails.sendMoneyUpdateTransactions(myEmail,from1,to1,transactionType,transactionType1,money);
+				if(e==0) {
+					jsonResponse.put(CommonConstants.STATUS,CommonConstants.SENDED_MSG);
+					sendResponse(response,jsonResponse);
+				}
+				else {
+					jsonResponse.put(CommonConstants.STATUS,CommonConstants.TRANS_CANCELLED_MSG);
+					sendResponse(response,jsonResponse);
 				}
 		}
 		catch(Exception e) {
@@ -171,26 +167,19 @@ public  class BaseServlet extends HttpServlet {
 		String email=(String) jsonObject.get(CommonConstants.EMAIL);
 	}
 	
-	protected void passwordChecking(HttpServletRequest request, HttpServletResponse response, String myEmail, String newPass, String confirmNewPass, JSONObject jsonObject) throws ServletException, IOException {
+	protected void passwordChecking(HttpServletRequest request, HttpServletResponse response, String myEmail, String newPass, String confirmNewPass) throws ServletException, IOException {
 		
 		try {
-			if(newPass.length()<8) {
-				jsonResponse.put(CommonConstants.STATUS, CommonConstants.PASSWORD_LENGTH);
+			if(newPass.equals(confirmNewPass)) {
+				jsonResponse.put(CommonConstants.STATUS, CommonConstants.PASSWORD_CHANGE);
 				sendResponse(response,jsonResponse);
-				String newPass1=(String) jsonObject.get(CommonConstants.NEW_PASSWORD);
+				UserDetails.updatePasswordInReg(newPass,myEmail);
 			}
 			else {
-				String newPass1=newPass;
-				if(newPass1.equals(confirmNewPass)) {
-					jsonResponse.put(CommonConstants.STATUS, CommonConstants.PASSWORD_CHANGE);
-					sendResponse(response,jsonResponse);
-					UserDetails.updatePassword(newPass1,myEmail);
-				}
-				else {
-					jsonResponse.put(CommonConstants.STATUS, CommonConstants.PASSWORD_CHANGE_INCORRECT);
-					sendResponse(response,jsonResponse);
-				}
+				jsonResponse.put(CommonConstants.STATUS, CommonConstants.PASSWORD_CHANGE_INCORRECT);
+				sendResponse(response,jsonResponse);
 			}
+			
 		}
 		catch(Exception e) {
 			jsonResponse.put(CommonConstants.STATUS, CommonConstants.PRBLMS_MSG);
@@ -198,4 +187,63 @@ public  class BaseServlet extends HttpServlet {
 		}
 	}
 	
+	protected void regChecking(HttpServletRequest request,HttpServletResponse response, String phoneNumber, String email, JSONObject jsonObject) throws ServletException, IOException {
+		
+		try {
+				String firstName=(String) jsonObject.get(CommonConstants.FIRSTNAME);
+				String lastName=(String) jsonObject.get(CommonConstants.LASTNAME);
+				String pass=(String) jsonObject.get(CommonConstants.PASSWORD);
+				if(pass.length()<8) {
+					jsonResponse.put(CommonConstants.STATUS,CommonConstants.PASSWORD_LENGTH);
+					sendResponse(response,jsonResponse);
+					String password1=(String) jsonObject.get(CommonConstants.PASSWORD);
+				}
+				else {
+					String password1=pass;
+					double accountBalance=0;
+					UserDetails.registerDatabase(firstName,lastName,phoneNumber,email,password1, accountBalance);
+					jsonResponse.put(CommonConstants.STATUS,CommonConstants.USER_SUCCESS);
+					sendResponse(response,jsonResponse);
+				}
+				
+		}
+		catch (Exception e) {
+			jsonResponse.put(CommonConstants.STATUS,CommonConstants.REGFAIL_AGAIN_FAILED);
+			sendResponse(response,jsonResponse);
+			log.error(e);
+		}
+	}
+	
 }
+/*protected void sendMoneyChecking(HttpServletRequest request, HttpServletResponse response, double money, String myEmail, String email) throws ServletException, IOException {
+
+try {
+	boolean receiverEmailCheck = false;
+	receiverEmailCheck=UserDetails.emailExists(email);
+	if(receiverEmailCheck != false) {
+			int e = 0;
+			String from1=myEmail;
+		    String to1=email;
+		    String transactionType=CommonConstants.TRANSACTION_SEND;
+		    String transactionType1=CommonConstants.TRANSACTION_RECEIVED;
+			e=UserDetails.sendMoneyUpdateTransactions(myEmail,from1,to1,transactionType,transactionType1,money);
+			if(e==0) {
+				jsonResponse.put(CommonConstants.STATUS,CommonConstants.SENDED_MSG);
+				sendResponse(response,jsonResponse);
+			}
+			else {
+				jsonResponse.put(CommonConstants.STATUS,CommonConstants.TRANS_CANCELLED_MSG);
+				sendResponse(response,jsonResponse);
+			}
+	}	
+			
+	else {
+		jsonResponse.put(CommonConstants.STATUS,CommonConstants.NOT_REG_USER_MSG);
+		sendResponse(response,jsonResponse);
+		}
+}
+catch(Exception e) {
+	jsonResponse.put(CommonConstants.STATUS,CommonConstants.PRBLMS_MSG);
+	sendResponse(response,jsonResponse);
+}
+}*/

@@ -1,5 +1,7 @@
 package com.constants1;
 
+import java.util.Collection;
+
 public class CommonConstants {
 
 	public static final String TRANSACTION_DEPO = "Deposited";
@@ -83,4 +85,6 @@ public class CommonConstants {
 	public static final String NOT_REG_USER_MSG = "Not a Registered User!!..";
 
 	public static final String LOGOUT_MSG = "You are Successfully Logged out!!";
+
+	public static final String REGFAIL_AGAIN_FAILED = "Something went wrong..Try again!!";
 }

@@ -26,7 +26,22 @@ public class PasswordChangeService extends BaseServlet {
 		String newPass=(String) jsonObject.get(CommonConstants.NEW_PASSWORD);
 		String confirmNewPass=(String) jsonObject.get(CommonConstants.CONFIRM_NEW_PASSWORD);
 		
-		passwordChecking(request, response,myEmail,newPass,confirmNewPass, jsonObject);
-		
+		try {
+			if(newPass.length()<8) {
+				jsonResponse.put(CommonConstants.STATUS, CommonConstants.PASSWORD_LENGTH);
+				sendResponse(response,jsonResponse);
+				String newPass1=(String) jsonObject.get(CommonConstants.NEW_PASSWORD);
+				newPass=newPass1;
+				doPost(request, response);
+			}
+			else {
+				String newPass1=newPass;
+				passwordChecking(request, response,myEmail,newPass1,confirmNewPass);
+			}
+		}
+		catch(Exception e) {
+			jsonResponse.put(CommonConstants.STATUS, CommonConstants.PRBLMS_MSG);
+			sendResponse(response,jsonResponse);
+		}
 	}
 }
