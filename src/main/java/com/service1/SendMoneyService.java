@@ -17,7 +17,6 @@ import com.bussiness1.UserDetails;
 import com.constants1.CommonConstants;
 
 
-@WebServlet("/SendMoneyService")
 public class SendMoneyService extends BaseServlet {
 	private static final long serialVersionUID = 1L;
    
@@ -28,21 +27,37 @@ public class SendMoneyService extends BaseServlet {
 		String myEmail=(String) session.getAttribute(CommonConstants.EMAIL);
 		String email=(String) jsonObject.get(CommonConstants.EMAIL);
 		Double money=Double.valueOf ( (String) jsonObject.get(CommonConstants.SEND_MONEY));
-		
+		int e = 0;
 		try {
 			boolean receiverEmailCheck = false;
 			receiverEmailCheck=UserDetails.emailExists(email);
 			if(receiverEmailCheck != false) {
-				sendMoneyChecking(request, response, money, myEmail, email);
+				String from1=myEmail;
+				String to1=email;
+				String transactionType=CommonConstants.TRANSACTION_SEND;
+			    String transactionType1=CommonConstants.TRANSACTION_RECEIVED;
+				e=UserDetails.sendMoneyUpdateTransactions(myEmail,from1,to1,transactionType,transactionType1,money);
+				if(e==0) {
+					resp.setStatus(CommonConstants.SENDED_MSG);
+					String msg=resp.getStatus();
+					sendResp(response,msg);
+				}
+				else {
+					resp.setStatus(CommonConstants.TRANS_CANCELLED_MSG);
+					String msg=resp.getStatus();
+					sendResp(response,msg);
+				}
 			}
 			else {
-				jsonResponse.put(CommonConstants.STATUS,CommonConstants.NOT_REG_USER_MSG);
-				sendResponse(response,jsonResponse);
+				resp.setStatus(CommonConstants.NOT_REG_USER_MSG);
+				String msg=resp.getStatus();
+				sendResp(response,msg);
 				}
 		}
-		catch(Exception e) {
-			jsonResponse.put(CommonConstants.STATUS,CommonConstants.PRBLMS_MSG);
-			sendResponse(response,jsonResponse);
+		catch(Exception e1) {
+			resp.setStatus(CommonConstants.PRBLMS_MSG);
+			String msg=resp.getStatus();
+			sendResp(response,msg);
 		}
 	}
 }

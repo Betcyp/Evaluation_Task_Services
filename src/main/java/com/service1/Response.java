@@ -1,36 +1,36 @@
 package com.service1;
-
 import org.json.JSONObject;
 
 public class Response extends JSONObject{
 
 	
 	private JSONObject jsonResObj;
-	private String firstName;
-	private String lastName;
-	private String phoneNumber;
-	private String email;
-	private String pass;
-	private JSONObject status;
 	
-	public Response() {
+	String status;
+	
+	/*public Response(BaseRequest baseReq) {
 		
-	}
-	public JSONObject getStatus() {
-		return status;
-	}
-	public void setStatus(JSONObject status) {
+		if(baseReq!=null) {
+			JSONObject jr=responseAdding(status, "abc");
+			return jr;
+		}
+		return baseReq;
+	}*/
+	
+	public void setStatus(String status) {
 		this.status = status;
+	
+	}
+	public String getStatus() {
+		return this.status;
+	
 	}
 	
-	
-	/*public void responseAdding(String key,Object value) {
+	/*public JSONObject responseAdding(String key,Object value) {
 		this.jsonResObj.put(key, value);
+		return this.jsonResObj;
 	}*/
 	
 	
-
-	
-
 
 }

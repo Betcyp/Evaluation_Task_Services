@@ -21,27 +21,36 @@ public class PasswordChangeService extends BaseServlet {
 		HttpSession session=sessionValidation(request, response);
 		String result=getRequestBody(request); 
 		JSONObject jsonObject=new JSONObject(result);
-		
 		String myEmail=(String) session.getAttribute(CommonConstants.EMAIL);
 		String newPass=(String) jsonObject.get(CommonConstants.NEW_PASSWORD);
 		String confirmNewPass=(String) jsonObject.get(CommonConstants.CONFIRM_NEW_PASSWORD);
 		
 		try {
 			if(newPass.length()<8) {
-				jsonResponse.put(CommonConstants.STATUS, CommonConstants.PASSWORD_LENGTH);
-				sendResponse(response,jsonResponse);
-				String newPass1=(String) jsonObject.get(CommonConstants.NEW_PASSWORD);
-				newPass=newPass1;
-				doPost(request, response);
+				resp.setStatus(CommonConstants.PASSWORD_LENGTH);
+				String msg=resp.getStatus();
+				sendResp(response,msg);
 			}
 			else {
-				String newPass1=newPass;
-				passwordChecking(request, response,myEmail,newPass1,confirmNewPass);
+				//passwordChecking(response,myEmail,newPass,confirmNewPass);
+				if(newPass.equals(confirmNewPass)) {
+					UserDetails.updatePasswordInReg(newPass,myEmail);
+					resp.setStatus(CommonConstants.PASSWORD_CHANGE);
+					String msg=resp.getStatus();
+					sendResp(response,msg);
+					
+				}
+				else {	
+					resp.setStatus(CommonConstants.PASSWORD_CHANGE_INCORRECT);
+					String msg=resp.getStatus();
+					sendResp(response,msg);
+				}
 			}
 		}
 		catch(Exception e) {
-			jsonResponse.put(CommonConstants.STATUS, CommonConstants.PRBLMS_MSG);
-			sendResponse(response,jsonResponse);
+			resp.setStatus(CommonConstants.PRBLMS_MSG);
+			String msg=resp.getStatus();
+			sendResp(response,msg);
 		}
 	}
 }

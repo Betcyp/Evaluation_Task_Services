@@ -16,7 +16,6 @@ import com.bussiness1.UserDetails;
 import com.constants1.CommonConstants;
 
 
-@WebServlet("/ViewTransactionHistory")
 public  class ViewTransactionHistory extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -26,21 +25,21 @@ public  class ViewTransactionHistory extends BaseServlet {
 		String myEmail=(String) session.getAttribute(CommonConstants.EMAIL);
 		String email=(String) session.getAttribute(CommonConstants.EMAIL);
 		
-		
 		try {
 			JSONObject objTrans=UserDetails.getTransactionDetails(myEmail,email);
 			if(objTrans==null) {
-				jsonResponse.put(CommonConstants.STATUS,CommonConstants.NO_TRANS_MSG);
-				sendResponse(response,jsonResponse);
+				resp.setStatus(CommonConstants.NO_TRANS_MSG);
+				sendResp(response,resp.getStatus());
 			}
 			else {
-				jsonResponse.put(CommonConstants.STATUS,objTrans);
-				sendResponse(response,jsonResponse);
+				String msg=objTrans.toString();
+				resp.setStatus(msg);
+				sendResp(response,resp.getStatus());
 			}
 		}
 		catch (Exception e) {
-			jsonResponse.put(CommonConstants.STATUS,CommonConstants.PRBLMS_MSG);
-			sendResponse(response,jsonResponse);
+			resp.setStatus(CommonConstants.PRBLMS_MSG);
+			sendResp(response,resp.getStatus());
 	} 
 }
 }

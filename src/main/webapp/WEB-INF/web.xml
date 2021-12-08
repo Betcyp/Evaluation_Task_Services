@@ -91,12 +91,4 @@
     <url-pattern>/PasswordChange</url-pattern>
   </servlet-mapping>
   
-   <servlet>
-    <servlet-name>RegService</servlet-name>
-    <servlet-class>com.service1.Register</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RegService</servlet-name>
-    <url-pattern>/RegistersTry</url-pattern>
-  </servlet-mapping>
 </web-app>

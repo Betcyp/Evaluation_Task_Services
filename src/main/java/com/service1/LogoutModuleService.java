@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,6 @@ import com.bussiness1.UserDetails;
 import com.constants1.CommonConstants;
 
 
-@WebServlet("/LogoutModuleService")
 public class LogoutModuleService extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,8 +27,8 @@ public class LogoutModuleService extends BaseServlet {
 		
 		if(sessions != null){
 			sessions.invalidate();
-			jsonResponse.put(CommonConstants.STATUS,CommonConstants.LOGOUT_MSG);
-			sendResponse(response,jsonResponse);
+			resp.setStatus(CommonConstants.LOGOUT_MSG);
+			sendResp(response,resp.getStatus());
     	}
     }
 }

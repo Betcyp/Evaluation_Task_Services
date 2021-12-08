@@ -29,12 +29,14 @@ public class BalanceService extends BaseServlet {
 				
 		try {
 			JSONObject objBalance=UserDetails.getBalance(myEmail);
-			jsonResponse.put(CommonConstants.STATUS, objBalance);
-			sendResponse(response,jsonResponse);
+			String msg=objBalance.toString();
+			resp.setStatus(msg);
+			sendResp(response,resp.getStatus());
+			//objBalance.getDouble(CommonConstants.ACCOUNT_BALANCE_TABLE);
 		} 
 		catch (Exception e) {
-			jsonResponse.put(CommonConstants.STATUS,CommonConstants.PRBLMS_MSG);
-			sendResponse(response,jsonResponse);
+			resp.setStatus(CommonConstants.PRBLMS_MSG);
+			sendResp(response,resp.getStatus());
 			}
 		}
 }

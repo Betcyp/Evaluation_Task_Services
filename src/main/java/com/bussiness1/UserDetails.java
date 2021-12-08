@@ -51,7 +51,7 @@ public class UserDetails {
          ResultSet rs = null;
          boolean exists = false;
          try {
-        	 connection=DbConnect.getInstance().getConnection();
+        	connection=DbConnect.getInstance().getConnection();
          	ps=connection.prepareStatement(PaymentQueries.PHONE_QUERY);
  			ps.setString(1,phoneNumber);
  			rs=ps.executeQuery();
@@ -72,14 +72,14 @@ public class UserDetails {
      }
 	
 	
-	public static void loginDatabase(String email1, String pass, String mySessionId) throws SQLException {
+	public static void loginDatabase(String email, String pass, String mySessionId) throws SQLException {
 		Connection connection = null;
         PreparedStatement ps = null;
 
 		try {
 			connection=DbConnect.getInstance().getConnection();
 			ps=connection.prepareStatement(PaymentQueries.LOGIN_QUERY);
-			ps.setString(1,email1);
+			ps.setString(1,email);
             ps.setString(2,pass);
             ps.setString(3,mySessionId);
             ps.executeUpdate();
@@ -113,7 +113,7 @@ public class UserDetails {
 		return enter;
  		 
  	}*/
-     public static boolean emailPassExists(String email1, String pass) throws SQLException  {
+     public static boolean emailPassExists(String email, String pass) throws SQLException  {
     	 Connection connection = null;
     	 PreparedStatement ps = null; 
     	 ResultSet rs = null;
@@ -121,7 +121,7 @@ public class UserDetails {
     	 try {
     	 	connection=DbConnect.getInstance().getConnection();
     	 	ps=connection.prepareStatement(PaymentQueries.EMAILPASS_QUERY);
-    	 	ps.setString(1,email1);
+    	 	ps.setString(1,email);
     	 	ps.setString(2,pass);
     	 	rs=ps.executeQuery();
     	 	
@@ -238,7 +238,7 @@ public class UserDetails {
 	   	}
 	}
 	
-	public static void registerDatabase(String firstName, String lastName, String phoneNumber, String email, String password1, double accountBalance) throws SQLException {
+	public static void registerDatabase(String firstName, String lastName, String phoneNumber, String email, String pass, double accountBalance) throws SQLException {
         
 		Connection connection = null;
 		CallableStatement cs = null; 
@@ -249,7 +249,7 @@ public class UserDetails {
 			cs.setString(2,lastName);
 			cs.setString(3,phoneNumber);
 			cs.setString(4,email);
-			cs.setString(5,password1);
+			cs.setString(5,pass);
 			cs.setDouble(6,accountBalance);
 			cs.executeUpdate();		
 		}
@@ -278,14 +278,14 @@ public class UserDetails {
 			connection.close();
 		}
 }
-	public static void updatePasswordInReg(String newPass1, String myEmail) throws SQLException {
+	public static void updatePasswordInReg(String newPass, String myEmail) throws SQLException {
 		Connection connection = null;
         PreparedStatement ps = null;
         
         try {
         	connection=DbConnect.getInstance().getConnection();
         	ps=connection.prepareStatement(PaymentQueries.PASSWORD_UPDATE_QUERY);
-        	ps.setString(1, newPass1);
+        	ps.setString(1, newPass);
         	ps.setString(2,myEmail);
         	ps.executeUpdate();
         	

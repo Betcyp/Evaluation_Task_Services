@@ -74,7 +74,7 @@ public class CommonConstants {
 
 	public static final String LOGIN_MSG = "You are Successfully Logged In!!";
 
-	public static final String LOGIN_FAILED_MSG = "Login failed!!..Please login";
+	public static final String INVALID_SESSION_MSG = "Invalid Session!!..Please login";
 
 	public static final String DEPOSITED_MSG = "Successfully Deposited!!";
 
@@ -87,4 +87,8 @@ public class CommonConstants {
 	public static final String LOGOUT_MSG = "You are Successfully Logged out!!";
 
 	public static final String REGFAIL_AGAIN_FAILED = "Something went wrong..Try again!!";
+
+	public static final String PRBLMS111_MSG = "abc";
+
+	public static final String OLD_SESSION_MSG = "old session";
 }

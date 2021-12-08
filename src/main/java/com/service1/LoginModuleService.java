@@ -19,38 +19,38 @@ import com.bussiness1.UserDetails;
 import com.constants1.CommonConstants;
 
 
-@WebServlet("/LoginModuleService")
 public  class LoginModuleService extends BaseServlet {
 	private static final long serialVersionUID = 1L;
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String result=getRequestBody(request); 
+		
+		String result=getRequestBody(request);
 		JSONObject jsonObject=new JSONObject(result);
 		
-		String email1=(String) jsonObject.get(CommonConstants.EMAIL);
+		String email=(String) jsonObject.get(CommonConstants.EMAIL);
 		String pass=(String) jsonObject.get(CommonConstants.PASSWORD);
-		
 		boolean enter = false;
 		
 		try {
-			enter=UserDetails.emailPassExists(email1, pass);
+			enter=UserDetails.emailPassExists(email, pass);
 		
 			if(enter != false) {
 		
-				HttpSession session=sessionCreation(email1, pass, request, response);	
+				HttpSession session=sessionCreation(email, pass, request, response);	
 				session=sessionValidation(request, response);
 				String mySessionId=session.getId();
-				UserDetails.loginDatabase(email1, pass, mySessionId);
+				UserDetails.loginDatabase(email, pass, mySessionId);
 			}
 			else {
-				jsonResponse.put(CommonConstants.STATUS,CommonConstants.INVALID_MSG);
-				sendResponse(response,jsonResponse);
+				resp.setStatus(CommonConstants.INVALID_MSG);
+				sendResp(response,resp.getStatus());
 			}
 			
 		}
 		catch (Exception e) {
-			jsonResponse.put(CommonConstants.STATUS,CommonConstants.LOGIN_FAILED);
-			sendResponse(response,jsonResponse);
+			resp.setStatus(CommonConstants.LOGIN_FAILED);
+			sendResp(response,resp.getStatus());
 		}
 			
 	}
