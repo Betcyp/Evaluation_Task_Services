@@ -28,7 +28,8 @@ public class LogoutModuleService extends BaseServlet {
 		if(sessions != null){
 			sessions.invalidate();
 			resp.setStatus(CommonConstants.LOGOUT_MSG);
-			sendResp(response,resp.getStatus());
+			resp.setData(j);
+			sendResp(response);
     	}
     }
 }

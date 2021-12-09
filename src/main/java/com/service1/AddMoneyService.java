@@ -18,7 +18,6 @@ import com.constants1.CommonConstants;
 public  class AddMoneyService extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	
-	
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     
     	    HttpSession session=sessionValidation(request, response);
@@ -33,12 +32,14 @@ public  class AddMoneyService extends BaseServlet {
 				String transactionType=CommonConstants.TRANSACTION_DEPO;
 				UserDetails.updateBalanceAndTransactions(myEmail, from1, to1, transactionType, money);
 				resp.setStatus(CommonConstants.DEPOSITED_MSG);
-				sendResp(response,resp.getStatus());
+				resp.setData(j);
+				sendResp(response);
 				
 			} 
 			catch (Exception e1) {
 				resp.setStatus(CommonConstants.PRBLMS_MSG);
-				sendResp(response,resp.getStatus());
+				resp.setData(j);
+				sendResp(response);
 			}
     		
 		}

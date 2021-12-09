@@ -28,29 +28,29 @@ public class PasswordChangeService extends BaseServlet {
 		try {
 			if(newPass.length()<8) {
 				resp.setStatus(CommonConstants.PASSWORD_LENGTH);
-				String msg=resp.getStatus();
-				sendResp(response,msg);
+				resp.setData(j);
+				sendResp(response);
 			}
 			else {
 				//passwordChecking(response,myEmail,newPass,confirmNewPass);
 				if(newPass.equals(confirmNewPass)) {
 					UserDetails.updatePasswordInReg(newPass,myEmail);
 					resp.setStatus(CommonConstants.PASSWORD_CHANGE);
-					String msg=resp.getStatus();
-					sendResp(response,msg);
+					resp.setData(j);
+					sendResp(response);
 					
 				}
 				else {	
 					resp.setStatus(CommonConstants.PASSWORD_CHANGE_INCORRECT);
-					String msg=resp.getStatus();
-					sendResp(response,msg);
+					resp.setData(j);
+					sendResp(response);
 				}
 			}
 		}
 		catch(Exception e) {
 			resp.setStatus(CommonConstants.PRBLMS_MSG);
-			String msg=resp.getStatus();
-			sendResp(response,msg);
+			resp.setData(j);
+			sendResp(response);
 		}
 	}
 }

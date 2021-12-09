@@ -39,25 +39,25 @@ public class SendMoneyService extends BaseServlet {
 				e=UserDetails.sendMoneyUpdateTransactions(myEmail,from1,to1,transactionType,transactionType1,money);
 				if(e==0) {
 					resp.setStatus(CommonConstants.SENDED_MSG);
-					String msg=resp.getStatus();
-					sendResp(response,msg);
+					resp.setData(j);
+					sendResp(response);
 				}
 				else {
 					resp.setStatus(CommonConstants.TRANS_CANCELLED_MSG);
-					String msg=resp.getStatus();
-					sendResp(response,msg);
+					resp.setData(j);
+					sendResp(response);
 				}
 			}
 			else {
 				resp.setStatus(CommonConstants.NOT_REG_USER_MSG);
-				String msg=resp.getStatus();
-				sendResp(response,msg);
+				resp.setData(j);
+				sendResp(response);
 				}
 		}
 		catch(Exception e1) {
 			resp.setStatus(CommonConstants.PRBLMS_MSG);
-			String msg=resp.getStatus();
-			sendResp(response,msg);
+			resp.setData(j);
+			sendResp(response);
 		}
 	}
 }

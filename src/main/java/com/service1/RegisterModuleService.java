@@ -15,7 +15,6 @@ public class RegisterModuleService extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-
 		String result=getRequestBody(request); 
 		JSONObject jsonObject=new JSONObject(result);
 		String phoneNumber=(String) jsonObject.get(CommonConstants.PHONENUMBER);
@@ -28,7 +27,8 @@ public class RegisterModuleService extends BaseServlet {
 			if(check != false)
 			{
 				resp.setStatus(CommonConstants.ALREADY_REG);
-				sendResp(response,resp.getStatus());
+				resp.setData(j);
+				sendResp(response);
 			}
 			else {
 				String firstName=(String) jsonObject.get(CommonConstants.FIRSTNAME);
@@ -36,29 +36,31 @@ public class RegisterModuleService extends BaseServlet {
 				String pass=(String) jsonObject.get(CommonConstants.PASSWORD);
 					if(pass.length()<8) {
 						resp.setStatus(CommonConstants.PASSWORD_LENGTH);
-						sendResp(response,resp.getStatus());
-						
+						resp.setData(j);
+						sendResp(response);
 					}
 					else {
 						double accountBalance=0;
 						UserDetails.registerDatabase(firstName,lastName,phoneNumber,email,pass, accountBalance);
 						resp.setStatus(CommonConstants.USER_SUCCESS);
-						sendResp(response,resp.getStatus());
+						resp.setData(j);
+						sendResp(response);
 					}
 			}
 		}
 		catch (Exception e) {
-			//log.error(e);
 			resp.setStatus(CommonConstants.REG_FAILED);
-			sendResp(response,resp.getStatus());
+			resp.setData(j);
+			sendResp(response);
 		}
 	}
-}
+}	
 	
 
 
+
 		
-		
+	
 
 		
 	

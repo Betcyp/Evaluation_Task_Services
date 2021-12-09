@@ -3,6 +3,7 @@ package com.service1;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +19,7 @@ import org.json.JSONObject;
 import com.bussiness1.UserDetails;
 import com.constants1.CommonConstants;
 import com.constants1.PaymentQueries;
-@WebServlet("/BalanceService")
+
 public class BalanceService extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -29,17 +30,19 @@ public class BalanceService extends BaseServlet {
 				
 		try {
 			JSONObject objBalance=UserDetails.getBalance(myEmail);
-			String msg=objBalance.toString();
-			resp.setStatus(msg);
-			sendResp(response,resp.getStatus());
-			//objBalance.getDouble(CommonConstants.ACCOUNT_BALANCE_TABLE);
+			resp.setStatus(CommonConstants.SUCCESS);
+			resp.setData(objBalance);
+			sendResp(response);
 		} 
 		catch (Exception e) {
 			resp.setStatus(CommonConstants.PRBLMS_MSG);
-			sendResp(response,resp.getStatus());
+			resp.setData(j);
+			sendResp(response);
 			}
 		}
 }
-			
 
+
+/*{"status": "success , 
+"accountBalance":210"}*/
 

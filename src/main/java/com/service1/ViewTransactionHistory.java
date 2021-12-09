@@ -29,17 +29,19 @@ public  class ViewTransactionHistory extends BaseServlet {
 			JSONObject objTrans=UserDetails.getTransactionDetails(myEmail,email);
 			if(objTrans==null) {
 				resp.setStatus(CommonConstants.NO_TRANS_MSG);
-				sendResp(response,resp.getStatus());
+				resp.setData(j);
+				sendResp(response);
 			}
 			else {
-				String msg=objTrans.toString();
-				resp.setStatus(msg);
-				sendResp(response,resp.getStatus());
+				resp.setStatus(CommonConstants.SUCCESS);
+				resp.setData(objTrans);
+				sendResp(response);
 			}
 		}
 		catch (Exception e) {
 			resp.setStatus(CommonConstants.PRBLMS_MSG);
-			sendResp(response,resp.getStatus());
+			resp.setData(j);
+			sendResp(response);
 	} 
 }
 }

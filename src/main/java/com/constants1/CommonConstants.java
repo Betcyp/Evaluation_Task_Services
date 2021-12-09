@@ -91,4 +91,6 @@ public class CommonConstants {
 	public static final String PRBLMS111_MSG = "abc";
 
 	public static final String OLD_SESSION_MSG = "old session";
+
+	public static final String SUCCESS = "success";
 }

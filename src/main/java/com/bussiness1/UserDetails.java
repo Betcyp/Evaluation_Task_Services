@@ -143,7 +143,7 @@ public class UserDetails {
 		 Connection connection = null;
 	   	 PreparedStatement ps = null; 
 	   	 ResultSet rs = null;
-	   
+	   	// Double accountBalance = null;
 	   	 try {
 	   	 	connection=DbConnect.getInstance().getConnection();
 	   	 	ps=connection.prepareStatement(PaymentQueries.ACCOUNT_BALANCE_QUERY);
@@ -153,15 +153,15 @@ public class UserDetails {
 	   	 	while(rs.next()) 
 	   	      {
 	   	 		jsonObject.put(CommonConstants.ACCOUNT_BALANCE,rs.getDouble(CommonConstants.ACCOUNT_BALANCE_TABLE));
-	   	 		
-	   	      }
-			return jsonObject;
+	   	 	  }
+	   	 return jsonObject;
 		}
 	   	finally {
    	 	ps.close();
    	 	rs.close();
    	 	connection.close();
-	   	}
+   	  	}
+	
 		
 	}
 
@@ -229,8 +229,7 @@ public class UserDetails {
 	   	 		jsonObject.put(CommonConstants.TRANSACTION_DETAILS, array);
 	   	 		return jsonObject;
 	   	 	}
-	   	      
-		}
+	   	}
 	   	finally {
   	 	stmnt.close();
   	 	rs.close();

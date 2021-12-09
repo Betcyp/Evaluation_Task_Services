@@ -17,8 +17,9 @@ public class BaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static Logger log = Logger.getLogger(BaseServlet.class);   
 	//Gson gson = new Gson();
-  
+	JSONObject j=new JSONObject();
    Response resp=new Response();
+   //BaseRequest baseReq=new BaseRequest(null);
 	protected String getRequestBody(HttpServletRequest request) {
 		StringBuffer sb = new StringBuffer();
 		String result= null;
@@ -37,44 +38,53 @@ public class BaseServlet extends HttpServlet {
 		
 	}
 	
-	 /*protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+	protected void sendResp(HttpServletResponse response) throws IOException {
+		 
+		
+		 JSONObject data=new JSONObject();
+		 String key =CommonConstants.STATUS;
+		 data=resp.getData();
+		 data.put(key, resp.getStatus());
+		 
+		 response.setContentType("application/json");
+		 response.setCharacterEncoding("UTF-8");
+	     response.getWriter().print(data);
+		 
+	}
+	 /*protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException { 
 	 
 		try {
 			BaseRequest baseReq=null;
 			Response resp=null;
-			//String base=null;
+			
 			String result=getRequestBody(request);
 			
 			baseReq=new BaseRequest(result);
-			resp=new Response(baseReq);
-			
+			/*String firstName=null;
+			String lastName=null;
+			String phoneNumber=null;
+			String email=null;
+			String pass=null;*/
+
 			//resp.setStatus(CommonConstants.STATUS);
+			/*baseReq.setFirstName(result);
+			baseReq.setLastName(result);
+			baseReq.setPhoneNumber(result);
+			baseReq.setEmail(result);
+			baseReq.setPass(result);
 			
-			baseReq.setFirstName(CommonConstants.FIRSTNAME);
-			baseReq.setLastName(CommonConstants.LASTNAME);
-			baseReq.setPhoneNumber(CommonConstants.PHONENUMBER);
-			baseReq.setEmail(CommonConstants.EMAIL);
-			baseReq.setPass(CommonConstants.PASSWORD);
-			//process(baseReq,resp);
-			//sendResp(response, msg);
+			resp=new Response(baseReq);
+			//process(baseReq,resp,response);
+			//sendResp(response, msg)
 		}
 		catch(Exception e) {
 			log.error(e);
 		}
 	 }
-	 
-	//abstract protected void process(BaseRequest baseReq, Response resp) throws Exception;
 	 */
-	 protected void sendResp(HttpServletResponse response,String msg) throws IOException {
-		 
-		 //Gson g=new Gson();
-		 JSONObject obj=new JSONObject();
-		 String key =CommonConstants.STATUS;
-         obj.put(key, msg);
-		 response.setContentType("application/json");
-		 response.setCharacterEncoding("UTF-8");
-	     response.getWriter().print(obj);
-	 }
+	//abstract protected void process(BaseRequest baseReq, Response resp,HttpServletResponse response) throws Exception;
+	 
+	 
 
 		
 	protected HttpSession sessionValidation(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -83,7 +93,8 @@ public class BaseServlet extends HttpServlet {
 		
 		if(session == null){
 			resp.setStatus(CommonConstants.INVALID_SESSION_MSG);
-			sendResp(response,resp.getStatus());
+			resp.setData(j);
+			sendResp(response);
 		}
 	
 		else {
@@ -112,8 +123,9 @@ public class BaseServlet extends HttpServlet {
 		
 		HttpSession session=request.getSession();
 		resp.setStatus(CommonConstants.LOGIN_MSG);
-		sendResp(response,resp.getStatus());
-
+		resp.setData(j);
+		sendResp(response);
+		
 		session.setMaxInactiveInterval(5*60);
 		session.setAttribute("email", email);
 		session.setAttribute("password", password);

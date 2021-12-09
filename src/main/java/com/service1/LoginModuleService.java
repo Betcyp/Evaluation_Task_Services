@@ -44,13 +44,15 @@ public  class LoginModuleService extends BaseServlet {
 			}
 			else {
 				resp.setStatus(CommonConstants.INVALID_MSG);
-				sendResp(response,resp.getStatus());
+				resp.setData(j);
+				sendResp(response);
 			}
 			
 		}
 		catch (Exception e) {
 			resp.setStatus(CommonConstants.LOGIN_FAILED);
-			sendResp(response,resp.getStatus());
+			resp.setData(j);
+			sendResp(response);
 		}
 			
 	}
