@@ -19,8 +19,7 @@ public class PasswordChangeService extends BaseServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session=sessionValidation(request, response);
-		String result=getRequestBody(request); 
-		JSONObject jsonObject=new JSONObject(result);
+		JSONObject jsonObject = getRequestBody(request);
 		String myEmail=(String) session.getAttribute(CommonConstants.EMAIL);
 		String newPass=(String) jsonObject.get(CommonConstants.NEW_PASSWORD);
 		String confirmNewPass=(String) jsonObject.get(CommonConstants.CONFIRM_NEW_PASSWORD);

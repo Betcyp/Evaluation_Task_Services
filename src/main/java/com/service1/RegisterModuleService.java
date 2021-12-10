@@ -14,12 +14,12 @@ import com.google.gson.JsonObject;
 public class RegisterModuleService extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	
-	protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-		String result=getRequestBody(request); 
-		JSONObject jsonObject=new JSONObject(result);
+	protected void doPost( HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		
+		JSONObject jsonObject = getRequestBody(request);
 		String phoneNumber=(String) jsonObject.get(CommonConstants.PHONENUMBER);
 		String email=(String) jsonObject.get(CommonConstants.EMAIL);
-		
+	
 		try {
 			boolean check = false;
 			check=UserDetails.phoneEmailExists(phoneNumber,email);
@@ -34,7 +34,7 @@ public class RegisterModuleService extends BaseServlet {
 				String firstName=(String) jsonObject.get(CommonConstants.FIRSTNAME);
 				String lastName=(String) jsonObject.get(CommonConstants.LASTNAME);
 				String pass=(String) jsonObject.get(CommonConstants.PASSWORD);
-					if(pass.length()<8) {
+				if(pass.length()<8) {
 						resp.setStatus(CommonConstants.PASSWORD_LENGTH);
 						resp.setData(j);
 						sendResp(response);

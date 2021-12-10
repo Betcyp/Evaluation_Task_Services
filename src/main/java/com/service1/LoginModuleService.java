@@ -24,12 +24,10 @@ public  class LoginModuleService extends BaseServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		String result=getRequestBody(request);
-		JSONObject jsonObject=new JSONObject(result);
-		
+		JSONObject jsonObject = getRequestBody(request);
 		String email=(String) jsonObject.get(CommonConstants.EMAIL);
 		String pass=(String) jsonObject.get(CommonConstants.PASSWORD);
+		
 		boolean enter = false;
 		
 		try {

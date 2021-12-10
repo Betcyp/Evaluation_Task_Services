@@ -189,3 +189,35 @@
 2021-12-10 00:57:14 DEBUG ApplicationContextListener:27 - Dbconnect
 2021-12-10 01:00:26 INFO  ApplicationContextListener:35 - context object destroyed
 2021-12-10 01:00:28 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 10:51:17 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 12:05:34 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 12:05:36 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 12:24:05 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 12:24:07 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 12:27:50 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 12:27:52 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 12:28:34 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 12:28:36 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 16:09:42 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 16:09:43 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 16:27:13 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 16:27:15 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 16:29:09 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 16:29:10 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 16:29:25 ERROR BaseServlet:76 - org.json.JSONException: JSONObject["{       \"firstName\":\"amal\",    \"lastName\":\"n\",    \"phoneNumber\":\"9747770689\",    \"email\":\"amal@gmail.com\",    \"password\":\"amal@2021\"}"] not found.
+2021-12-10 16:31:01 ERROR BaseServlet:76 - org.json.JSONException: JSONObject["{       \"firstName\":\"amal\",    \"lastName\":\"n\",    \"phoneNumber\":\"9747770689\",    \"email\":\"amal@gmail.com\",    \"password\":\"amal@2021\"}"] not found.
+2021-12-10 16:33:09 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 16:33:10 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 16:33:21 ERROR BaseServlet:76 - org.json.JSONException: JSONObject["{       \"firstName\":\"amal\",    \"lastName\":\"n\",    \"phoneNumber\":\"9747770689\",    \"email\":\"amal@gmail.com\",    \"password\":\"amal@2021\"}"] not found.
+2021-12-10 16:33:23 ERROR BaseServlet:76 - org.json.JSONException: JSONObject["{       \"firstName\":\"amal\",    \"lastName\":\"n\",    \"phoneNumber\":\"9747770689\",    \"email\":\"amal@gmail.com\",    \"password\":\"amal@2021\"}"] not found.
+2021-12-10 16:34:23 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 16:34:24 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 16:34:45 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 16:34:46 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 16:35:17 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 16:35:18 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 16:35:23 ERROR BaseServlet:76 - org.json.JSONException: JSONObject["{       \"firstName\":\"amal\",    \"lastName\":\"n\",    \"phoneNumber\":\"9747770689\",    \"email\":\"amal@gmail.com\",    \"password\":\"amal@2021\"}"] not found.
+2021-12-10 16:38:15 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 16:38:16 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 16:47:07 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 16:47:09 DEBUG ApplicationContextListener:27 - Dbconnect

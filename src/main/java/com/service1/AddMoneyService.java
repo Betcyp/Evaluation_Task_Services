@@ -21,8 +21,7 @@ public  class AddMoneyService extends BaseServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     
     	    HttpSession session=sessionValidation(request, response);
-    	    String result=getRequestBody(request); 
-    		JSONObject jsonObject=new JSONObject(result);
+    	    JSONObject jsonObject = getRequestBody(request);
 			String myEmail=(String) session.getAttribute(CommonConstants.EMAIL);
 			Double money=Double.valueOf ( (String) jsonObject.get(CommonConstants.ADD_MONEY));
 			

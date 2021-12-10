@@ -18,9 +18,10 @@ public class BaseServlet extends HttpServlet {
 	static Logger log = Logger.getLogger(BaseServlet.class);   
 	//Gson gson = new Gson();
 	JSONObject j=new JSONObject();
-   Response resp=new Response();
-   //BaseRequest baseReq=new BaseRequest(null);
-	protected String getRequestBody(HttpServletRequest request) {
+    Response resp=new Response();
+    
+	protected JSONObject getRequestBody(HttpServletRequest request) {
+		
 		StringBuffer sb = new StringBuffer();
 		String result= null;
 		try {
@@ -34,8 +35,9 @@ public class BaseServlet extends HttpServlet {
 			
 		}
 		result=sb.toString();
-		return result;
 		
+		JSONObject jsonObject=new JSONObject(result);
+		return jsonObject;
 	}
 	
 	protected void sendResp(HttpServletResponse response) throws IOException {
@@ -51,7 +53,7 @@ public class BaseServlet extends HttpServlet {
 	     response.getWriter().print(data);
 		 
 	}
-	 /*protected void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException { 
+	/* protected void doPost1(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException { 
 	 
 		try {
 			BaseRequest baseReq=null;
@@ -60,30 +62,17 @@ public class BaseServlet extends HttpServlet {
 			String result=getRequestBody(request);
 			
 			baseReq=new BaseRequest(result);
-			/*String firstName=null;
-			String lastName=null;
-			String phoneNumber=null;
-			String email=null;
-			String pass=null;*/
-
-			//resp.setStatus(CommonConstants.STATUS);
-			/*baseReq.setFirstName(result);
-			baseReq.setLastName(result);
-			baseReq.setPhoneNumber(result);
-			baseReq.setEmail(result);
-			baseReq.setPass(result);
 			
 			resp=new Response(baseReq);
-			//process(baseReq,resp,response);
-			//sendResp(response, msg)
+			
 		}
 		catch(Exception e) {
 			log.error(e);
 		}
 	 }
-	 */
-	//abstract protected void process(BaseRequest baseReq, Response resp,HttpServletResponse response) throws Exception;
 	 
+	abstract protected void process(BaseRequest baseReq, Response resp,HttpServletResponse response) throws Exception;
+	 */
 	 
 
 		
