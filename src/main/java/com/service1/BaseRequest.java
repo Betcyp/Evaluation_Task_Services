@@ -1,9 +1,5 @@
 package com.service1;
 
-import java.net.http.HttpRequest;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.json.JSONObject;
 
 public class BaseRequest extends JSONObject {
@@ -17,26 +13,15 @@ public class BaseRequest extends JSONObject {
 	private JSONObject data;
 	private String request;
 	
-	
-	/*public BaseRequest(String firstName , String lastName , String email, String phoneNumber,String pass) {
-		  this.firstName = firstName;
-		  this.lastName = lastName;
-		  this.email = email;
-		  this.phoneNumber = phoneNumber;
-		  this.pass = pass;
-		  
-		 }*/
-	
-	public  BaseRequest(String request) {
+	/*public  BaseRequest(String request) {
 		
 		this.request=request;
 		this.reqObj=this.getJSONObject(request);
 		
-	}
-	
+	}*/
 
-	public JSONObject setData() {
-		return this.data = this.getJSONObject(request);
+	public void setData(String request1) {
+		 this.data = new JSONObject(request1);
 	}
 	public JSONObject getData() {
 		return this.data;

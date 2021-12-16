@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import com.constants1.CommonConstants;
@@ -16,11 +15,10 @@ import com.constants1.CommonConstants;
 public class BaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	static Logger log = Logger.getLogger(BaseServlet.class);   
-	//Gson gson = new Gson();
 	JSONObject j=new JSONObject();
     Response resp=new Response();
     
-	protected JSONObject getRequestBody(HttpServletRequest request) {
+    protected JSONObject getRequestBody(HttpServletRequest request) {
 		
 		StringBuffer sb = new StringBuffer();
 		String result= null;
@@ -35,11 +33,10 @@ public class BaseServlet extends HttpServlet {
 			
 		}
 		result=sb.toString();
-		
 		JSONObject jsonObject=new JSONObject(result);
 		return jsonObject;
 	}
-	
+    
 	protected void sendResp(HttpServletResponse response) throws IOException {
 		 
 		
@@ -53,29 +50,7 @@ public class BaseServlet extends HttpServlet {
 	     response.getWriter().print(data);
 		 
 	}
-	/* protected void doPost1(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException { 
-	 
-		try {
-			BaseRequest baseReq=null;
-			Response resp=null;
-			
-			String result=getRequestBody(request);
-			
-			baseReq=new BaseRequest(result);
-			
-			resp=new Response(baseReq);
-			
-		}
-		catch(Exception e) {
-			log.error(e);
-		}
-	 }
-	 
-	abstract protected void process(BaseRequest baseReq, Response resp,HttpServletResponse response) throws Exception;
-	 */
-	 
-
-		
+	
 	protected HttpSession sessionValidation(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
 		HttpSession session=request.getSession(false);
@@ -120,7 +95,6 @@ public class BaseServlet extends HttpServlet {
 		session.setAttribute("password", password);
 		
 		Cookie ck  =new Cookie("email",email);
-		//ck.setMaxAge(5*60);
 	    response.addCookie(ck);
 		
 		return session;

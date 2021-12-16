@@ -5,11 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -90,29 +85,7 @@ public class UserDetails {
 		}
 		 
 	}
-     /*public static boolean loginDatabase(String email1, String pass, String mySessionId) throws SQLException {
- 		Connection connection = null;
- 		CallableStatement cs = null; 
- 		boolean enter=false;
- 		try {
- 			connection=DbConnect.getInstance().getConnection();
- 			cs= connection.prepareCall("{call login_procedure(?, ?, ?)}");
-			cs.setString(1,email1);
-			cs.setString(2,pass);
-			cs.setString(3,mySessionId);
-			cs.executeUpdate();	
- 		}
- 		catch(SQLException e) {
- 			enter=true;
- 			log.error(e);
- 		}
- 		finally {
- 			cs.close();
- 			connection.close();
- 		}
-		return enter;
- 		 
- 	}*/
+    
      public static boolean emailPassExists(String email, String pass) throws SQLException  {
     	 Connection connection = null;
     	 PreparedStatement ps = null; 
@@ -143,7 +116,6 @@ public class UserDetails {
 		 Connection connection = null;
 	   	 PreparedStatement ps = null; 
 	   	 ResultSet rs = null;
-	   	// Double accountBalance = null;
 	   	 try {
 	   	 	connection=DbConnect.getInstance().getConnection();
 	   	 	ps=connection.prepareStatement(PaymentQueries.ACCOUNT_BALANCE_QUERY);
@@ -162,7 +134,6 @@ public class UserDetails {
    	 	connection.close();
    	  	}
 	
-		
 	}
 
 	public static int sendMoneyUpdateTransactions(String myEmail,String from1, String to1, String transactionType,String transactionType1,Double money) throws SQLException{
@@ -183,7 +154,6 @@ public class UserDetails {
 		}
 	    catch(SQLException e1) {
 	    	e=1;
-	    	//return e;
 	    }
 		
 	    finally {

@@ -6,7 +6,11 @@ import java.sql.SQLException;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import org.apache.log4j.Logger;
+
+
 public class DbConnect {
+	 static Logger log = Logger.getLogger(DbConnect.class);
 	 Connection connection;
 	 private static InitialContext context;
 	 private static DataSource datasource;
@@ -19,7 +23,7 @@ public class DbConnect {
 				
 			}
 			catch (Exception e) {
-				e.printStackTrace();
+				log.error(e);
 			} 
 	 }
 	 

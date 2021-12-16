@@ -1,7 +1,5 @@
 package com.constants1;
 
-import java.util.Collection;
-
 public class CommonConstants {
 
 	public static final String TRANSACTION_DEPO = "Deposited";
@@ -22,13 +20,15 @@ public class CommonConstants {
 	
 	public static final String STATUS = "status";
 	
+	public static final String SUCCESS = "success";
+	
 	public static final String ADD_MONEY = "addMoney";
+	
+	public static final String SEND_MONEY = "sendMoney";
 	
 	public static final String ACCOUNT_BALANCE = "accountBalance";
 	
 	public static final String ACCOUNT_BALANCE_TABLE = "account_balance";
-	
-	public static final String SEND_MONEY = "sendMoney";
 	
 	public static final String SENDER = "sender";
 	
@@ -86,11 +86,5 @@ public class CommonConstants {
 
 	public static final String LOGOUT_MSG = "You are Successfully Logged out!!";
 
-	public static final String REGFAIL_AGAIN_FAILED = "Something went wrong..Try again!!";
-
-	public static final String PRBLMS111_MSG = "abc";
-
-	public static final String OLD_SESSION_MSG = "old session";
-
-	public static final String SUCCESS = "success";
+	
 }

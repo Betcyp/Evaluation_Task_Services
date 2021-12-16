@@ -221,3 +221,46 @@
 2021-12-10 16:38:16 DEBUG ApplicationContextListener:27 - Dbconnect
 2021-12-10 16:47:07 INFO  ApplicationContextListener:35 - context object destroyed
 2021-12-10 16:47:09 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 18:08:03 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 18:08:05 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 18:10:13 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 18:10:15 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 18:10:57 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 18:10:59 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 18:15:26 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 18:15:28 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-10 18:17:58 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-10 18:18:00 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-13 11:54:14 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-13 11:56:45 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-13 11:56:48 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-13 12:17:57 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-13 12:17:59 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-13 12:20:50 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-13 12:20:52 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-14 11:28:07 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-14 17:01:16 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-14 17:01:18 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-14 17:08:27 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-14 17:08:29 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-14 17:11:00 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-14 17:11:02 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-14 17:11:23 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-14 17:11:25 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-14 17:12:07 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-14 17:12:10 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-14 17:12:42 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-14 17:12:44 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-14 17:13:26 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-14 17:13:29 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-14 17:13:50 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-14 17:13:52 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-14 17:14:24 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-14 17:14:26 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-14 17:14:58 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-14 17:15:00 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-14 17:15:53 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-14 17:15:55 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-14 17:16:27 INFO  ApplicationContextListener:35 - context object destroyed
+2021-12-14 17:16:29 DEBUG ApplicationContextListener:27 - Dbconnect
+2021-12-15 18:08:30 DEBUG ApplicationContextListener:27 - Dbconnect
